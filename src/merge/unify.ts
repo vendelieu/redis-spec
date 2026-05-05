@@ -191,7 +191,7 @@ function normalizeArgument(arg: RawUpstreamArgument): CommandArgument {
     name: arg.name ?? "",
     displayText: arg.display_text ?? null,
     type: isArgumentType(arg.type) ? arg.type : "unknown",
-    token: arg.token ?? null,
+    token: canonicalizeToken(arg.token),
     since: arg.since ?? null,
     deprecatedSince: arg.deprecated_since ?? null,
     summary: arg.summary ?? null,
@@ -201,6 +201,21 @@ function normalizeArgument(arg: RawUpstreamArgument): CommandArgument {
     keySpecIndex: typeof arg.key_spec_index === "number" ? arg.key_spec_index : null,
     arguments: (arg.arguments ?? []).map(normalizeArgument),
   };
+}
+
+/**
+ * Tokens in Redis are case-insensitive on the wire (Redis itself uses `strcasecmp`).
+ * Upstream JSONs are inconsistent: some uppercase (`TYPE`, `ID`, `WITHSCORES`),
+ * others lowercase (`m`, `km`, `mi`, `ft` for GEODIST/GEOSEARCH; `normal`/`master`
+ * for CLIENT LIST TYPE values). Clients overwhelmingly expect the uppercase wire
+ * convention, so we normalize here. Tokens with special characters (e.g. the
+ * literal `""` MIGRATE empty-string sentinel) pass through unchanged.
+ */
+function canonicalizeToken(token: string | null | undefined): string | null {
+  if (token == null) return null;
+  if (token === "") return null;
+  if (/^[\p{L}\p{N}_\-]+$/u.test(token)) return token.toUpperCase();
+  return token;
 }
 
 function normalizeKeySpec(ks: RawUpstreamKeySpec): KeySpec {

@@ -291,6 +291,149 @@ describe("unifyAll", () => {
     expect(commands.EMPTY!.replies.confidence.resp2).toBe("missing");
   });
 
+  test("GET keeps its own reply_schema and arguments when SLOWLOG GET coexists (canonical-naming fix)", () => {
+    // Pre-fix bug: redisRepo loader keyed by short subcommand name, so
+    // slowlog-get.json's `{"GET": {container: "SLOWLOG", reply_schema: {type: "array", uniqueItems: true}}}`
+    // clobbered the real top-level GET. The published artifact ended up with
+    // arguments=[count] and resp3.kind="set". After the canonical-naming
+    // fix in redisRepo.ts, both commands coexist with their own data.
+    const bundle = emptyBundle({
+      redisRepo: {
+        GET: {
+          summary: "Get the value of a key",
+          since: "1.0.0",
+          group: "string",
+          arity: 2,
+          arguments: [{ name: "key", type: "key", key_spec_index: 0 }],
+          reply_schema: {
+            oneOf: [
+              { type: "string", description: "The value of the key." },
+              { type: "null", description: "Key does not exist." },
+            ],
+          },
+        },
+        "SLOWLOG GET": {
+          summary: "Get the slow log",
+          since: "2.2.12",
+          group: "server",
+          container: "SLOWLOG",
+          arguments: [{ name: "count", type: "integer", optional: true }],
+          reply_schema: {
+            type: "array",
+            uniqueItems: true,
+            items: { type: "array" },
+          },
+        },
+      },
+    });
+    const { commands } = unifyAll(bundle);
+
+    expect(commands.GET).toBeDefined();
+    expect(commands.GET!.arguments[0]?.name).toBe("key");
+    expect(commands.GET!.arguments[0]?.type).toBe("key");
+    expect(commands.GET!.replies.resp3?.kind).toBe("oneOf");
+
+    expect(commands["SLOWLOG GET"]).toBeDefined();
+    expect(commands["SLOWLOG GET"]!.arguments[0]?.name).toBe("count");
+    expect(commands["SLOWLOG GET"]!.replies.resp3?.kind).toBe("set");
+  });
+
+  test("argument tokens are canonicalized to uppercase wire form (GEODIST units, CLIENT LIST TYPE values)", () => {
+    const bundle = emptyBundle({
+      redisRepo: {
+        GEODIST: {
+          summary: "distance between members",
+          since: "3.2.0",
+          group: "geo",
+          arguments: [
+            { name: "key", type: "key", key_spec_index: 0 },
+            { name: "member1", type: "string" },
+            { name: "member2", type: "string" },
+            {
+              name: "unit",
+              type: "oneof",
+              optional: true,
+              arguments: [
+                { name: "m", type: "pure-token", token: "m" },
+                { name: "km", type: "pure-token", token: "km" },
+                { name: "ft", type: "pure-token", token: "ft" },
+                { name: "mi", type: "pure-token", token: "mi" },
+              ],
+            },
+          ],
+        },
+        "CLIENT LIST": {
+          summary: "list connections",
+          since: "2.4.0",
+          group: "connection",
+          container: "CLIENT",
+          arguments: [
+            {
+              name: "client-type",
+              token: "TYPE",
+              type: "oneof",
+              optional: true,
+              arguments: [
+                { name: "normal", type: "pure-token", token: "normal" },
+                { name: "master", type: "pure-token", token: "master" },
+                { name: "replica", type: "pure-token", token: "replica" },
+                { name: "pubsub", type: "pure-token", token: "pubsub" },
+              ],
+            },
+          ],
+        },
+      },
+    });
+    const { commands } = unifyAll(bundle);
+    const geoUnits = commands.GEODIST!.arguments[3]?.arguments ?? [];
+    expect(geoUnits.map((a) => a.token)).toEqual(["M", "KM", "FT", "MI"]);
+
+    const clientType = commands["CLIENT LIST"]!.arguments[0]!;
+    expect(clientType.token).toBe("TYPE");
+    const types = clientType.arguments.map((a) => a.token);
+    expect(types).toEqual(["NORMAL", "MASTER", "REPLICA", "PUBSUB"]);
+  });
+
+  test("MIGRATE empty-string sentinel token is preserved verbatim", () => {
+    const bundle = emptyBundle({
+      redisRepo: {
+        MIGRATE: {
+          summary: "atomic key transfer",
+          since: "2.6.0",
+          group: "generic",
+          arguments: [
+            {
+              name: "key-selector",
+              type: "oneof",
+              arguments: [
+                { name: "key", type: "key", key_spec_index: 0 },
+                { name: "empty-string", type: "pure-token", token: '""' },
+              ],
+            },
+          ],
+        },
+      },
+    });
+    const { commands } = unifyAll(bundle);
+    const sentinel = commands.MIGRATE!.arguments[0]!.arguments[1]!;
+    expect(sentinel.token).toBe('""');
+  });
+
+  test("empty-string token becomes null (no-op token slot)", () => {
+    const bundle = emptyBundle({
+      redisRepo: {
+        FOO: {
+          summary: "x",
+          since: "1.0",
+          group: "g",
+          arguments: [{ name: "bar", type: "string", token: "" }],
+        },
+      },
+    });
+    const { commands } = unifyAll(bundle);
+    expect(commands.FOO!.arguments[0]!.token).toBeNull();
+  });
+
   test("stats reflect coverage", () => {
     const bundle = emptyBundle({
       redisRepo: {
