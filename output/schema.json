@@ -1,0 +1,1086 @@
+{
+  "$ref": "#/definitions/SpecBundle",
+  "definitions": {
+    "SpecBundle": {
+      "type": "object",
+      "properties": {
+        "$schemaVersion": {
+          "type": "string",
+          "const": "1.0.0"
+        },
+        "manifest": {
+          "type": "object",
+          "properties": {
+            "builtAt": {
+              "type": "string"
+            },
+            "redisRepoSha": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "redisRepoTag": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "redisDocsSha": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "commandCount": {
+              "type": "number"
+            },
+            "moduleCommandCount": {
+              "type": "number"
+            },
+            "byModuleCount": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "number"
+              }
+            },
+            "replyCoverage": {
+              "type": "object",
+              "properties": {
+                "resp2": {
+                  "type": "number"
+                },
+                "resp3": {
+                  "type": "number"
+                },
+                "structuredFromSchema": {
+                  "type": "number"
+                },
+                "unknownKinds": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "resp2",
+                "resp3",
+                "structuredFromSchema",
+                "unknownKinds"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "builtAt",
+            "redisRepoSha",
+            "redisRepoTag",
+            "redisDocsSha",
+            "commandCount",
+            "moduleCommandCount",
+            "byModuleCount",
+            "replyCoverage"
+          ],
+          "additionalProperties": false
+        },
+        "commands": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "container": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "summary": {
+                "type": "string"
+              },
+              "since": {
+                "type": "string"
+              },
+              "deprecatedSince": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "replacedBy": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "command": {
+                        "type": "string"
+                      },
+                      "since": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "command",
+                      "since"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "group": {
+                "type": "string"
+              },
+              "module": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "enum": [
+                      "redisjson",
+                      "redisbloom",
+                      "redisearch",
+                      "redistimeseries",
+                      "sentinel"
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "complexity": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "arity": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "commandFlags": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "aclCategories": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "commandTips": {
+                "type": "object",
+                "properties": {
+                  "nondeterministicOutput": {
+                    "type": "boolean"
+                  },
+                  "nondeterministicOutputOrder": {
+                    "type": "boolean"
+                  },
+                  "requestPolicy": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "ALL_NODES",
+                          "ALL_SHARDS",
+                          "MULTI_SHARD",
+                          "SPECIAL"
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "responsePolicy": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "ONE_SUCCEEDED",
+                          "ALL_SUCCEEDED",
+                          "AGG_LOGICAL_AND",
+                          "AGG_LOGICAL_OR",
+                          "AGG_MIN",
+                          "AGG_MAX",
+                          "AGG_SUM",
+                          "SPECIAL"
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "raw": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "nondeterministicOutput",
+                  "nondeterministicOutputOrder",
+                  "requestPolicy",
+                  "responsePolicy",
+                  "raw"
+                ],
+                "additionalProperties": false
+              },
+              "history": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "since": {
+                      "type": "string"
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "since",
+                    "note"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "hints": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "docFlags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "function": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "getKeysFunction": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "keySpecs": {
+                "anyOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "notes": {
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        },
+                        "beginSearch": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "index",
+                                "keyword",
+                                "unknown"
+                              ]
+                            },
+                            "spec": {
+                              "type": "object",
+                              "properties": {
+                                "index": {
+                                  "type": [
+                                    "number",
+                                    "null"
+                                  ]
+                                },
+                                "keyword": {
+                                  "type": [
+                                    "string",
+                                    "null"
+                                  ]
+                                },
+                                "startFrom": {
+                                  "type": [
+                                    "number",
+                                    "null"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "index",
+                                "keyword",
+                                "startFrom"
+                              ],
+                              "additionalProperties": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "spec"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "findKeys": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": [
+                                "range",
+                                "keynum",
+                                "unknown"
+                              ]
+                            },
+                            "spec": {
+                              "type": "object",
+                              "properties": {
+                                "lastKey": {
+                                  "type": [
+                                    "number",
+                                    "null"
+                                  ]
+                                },
+                                "keyStep": {
+                                  "type": [
+                                    "number",
+                                    "null"
+                                  ]
+                                },
+                                "limit": {
+                                  "type": [
+                                    "number",
+                                    "null"
+                                  ]
+                                },
+                                "firstKey": {
+                                  "type": [
+                                    "number",
+                                    "null"
+                                  ]
+                                },
+                                "keyNumIdx": {
+                                  "type": [
+                                    "number",
+                                    "null"
+                                  ]
+                                }
+                              },
+                              "required": [
+                                "lastKey",
+                                "keyStep",
+                                "limit",
+                                "firstKey",
+                                "keyNumIdx"
+                              ],
+                              "additionalProperties": false
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "spec"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "RW": {
+                          "type": "boolean"
+                        },
+                        "RO": {
+                          "type": "boolean"
+                        },
+                        "OW": {
+                          "type": "boolean"
+                        },
+                        "access": {
+                          "type": "boolean"
+                        },
+                        "update": {
+                          "type": "boolean"
+                        },
+                        "insert": {
+                          "type": "boolean"
+                        },
+                        "delete": {
+                          "type": "boolean"
+                        },
+                        "incomplete": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "notes",
+                        "beginSearch",
+                        "findKeys",
+                        "RW",
+                        "RO",
+                        "OW",
+                        "access",
+                        "update",
+                        "insert",
+                        "delete",
+                        "incomplete"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "arguments": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "displayText": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "key",
+                        "string",
+                        "integer",
+                        "double",
+                        "unix-time",
+                        "pure-token",
+                        "oneof",
+                        "block",
+                        "pattern",
+                        "unknown"
+                      ]
+                    },
+                    "token": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "since": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "deprecatedSince": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "summary": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "optional": {
+                      "type": "boolean"
+                    },
+                    "multiple": {
+                      "type": "boolean"
+                    },
+                    "multipleToken": {
+                      "type": "boolean"
+                    },
+                    "keySpecIndex": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "arguments": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/arguments/items"
+                      }
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "displayText",
+                    "type",
+                    "token",
+                    "since",
+                    "deprecatedSince",
+                    "summary",
+                    "optional",
+                    "multiple",
+                    "multipleToken",
+                    "keySpecIndex",
+                    "arguments"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "replies": {
+                "type": "object",
+                "properties": {
+                  "resp2": {
+                    "anyOf": [
+                      {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "const": "simpleString"
+                              },
+                              "value": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "description": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "kind"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "const": "simpleError"
+                              },
+                              "description": {
+                                "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0/anyOf/0/properties/description"
+                              }
+                            },
+                            "required": [
+                              "kind"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "const": "integer"
+                              },
+                              "minimum": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "maximum": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "description": {
+                                "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0/anyOf/0/properties/description"
+                              }
+                            },
+                            "required": [
+                              "kind"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "const": "double"
+                              },
+                              "description": {
+                                "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0/anyOf/0/properties/description"
+                              }
+                            },
+                            "required": [
+                              "kind"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "const": "boolean"
+                              },
+                              "description": {
+                                "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0/anyOf/0/properties/description"
+                              }
+                            },
+                            "required": [
+                              "kind"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "const": "bulkString"
+                              },
+                              "encoding": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "utf-8",
+                                      "binary"
+                                    ]
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "description": {
+                                "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0/anyOf/0/properties/description"
+                              }
+                            },
+                            "required": [
+                              "kind"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "const": "verbatimString"
+                              },
+                              "format": {
+                                "anyOf": [
+                                  {
+                                    "type": "string",
+                                    "enum": [
+                                      "txt",
+                                      "mkd"
+                                    ]
+                                  },
+                                  {
+                                    "type": "null"
+                                  }
+                                ]
+                              },
+                              "description": {
+                                "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0/anyOf/0/properties/description"
+                              }
+                            },
+                            "required": [
+                              "kind"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "const": "bigNumber"
+                              },
+                              "description": {
+                                "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0/anyOf/0/properties/description"
+                              }
+                            },
+                            "required": [
+                              "kind"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "const": "null"
+                              },
+                              "description": {
+                                "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0/anyOf/0/properties/description"
+                              }
+                            },
+                            "required": [
+                              "kind"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "const": "unknown"
+                              },
+                              "rawText": {
+                                "type": "string"
+                              },
+                              "description": {
+                                "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0/anyOf/0/properties/description"
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "rawText"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "const": "array"
+                              },
+                              "items": {
+                                "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0"
+                              },
+                              "minItems": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "maxItems": {
+                                "type": [
+                                  "number",
+                                  "null"
+                                ]
+                              },
+                              "description": {
+                                "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0/anyOf/0/properties/description"
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "items"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "const": "set"
+                              },
+                              "items": {
+                                "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0"
+                              },
+                              "description": {
+                                "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0/anyOf/0/properties/description"
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "items"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "const": "map"
+                              },
+                              "key": {
+                                "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0"
+                              },
+                              "value": {
+                                "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0"
+                              },
+                              "description": {
+                                "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0/anyOf/0/properties/description"
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "key",
+                              "value"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "const": "tuple"
+                              },
+                              "items": {
+                                "type": "array",
+                                "items": {
+                                  "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0"
+                                }
+                              },
+                              "description": {
+                                "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0/anyOf/0/properties/description"
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "items"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "const": "oneOf"
+                              },
+                              "variants": {
+                                "type": "array",
+                                "items": {
+                                  "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0"
+                                }
+                              },
+                              "description": {
+                                "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0/anyOf/0/properties/description"
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "variants"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "const": "push"
+                              },
+                              "items": {
+                                "type": "array",
+                                "items": {
+                                  "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0"
+                                }
+                              },
+                              "description": {
+                                "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0/anyOf/0/properties/description"
+                              }
+                            },
+                            "required": [
+                              "kind",
+                              "items"
+                            ],
+                            "additionalProperties": false
+                          }
+                        ]
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "resp3": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/resp2/anyOf/0"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "protocolNotes": {
+                    "type": "object",
+                    "properties": {
+                      "differs": {
+                        "type": "boolean"
+                      },
+                      "summary": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "differs",
+                      "summary"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "rawText": {
+                    "type": "object",
+                    "properties": {
+                      "resp2": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "resp3": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "resp2",
+                      "resp3"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "sources": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "resp2",
+                  "resp3",
+                  "protocolNotes",
+                  "rawText",
+                  "sources"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "name",
+              "container",
+              "summary",
+              "since",
+              "deprecatedSince",
+              "replacedBy",
+              "group",
+              "module",
+              "complexity",
+              "arity",
+              "commandFlags",
+              "aclCategories",
+              "commandTips",
+              "history",
+              "hints",
+              "docFlags",
+              "function",
+              "getKeysFunction",
+              "keySpecs",
+              "arguments",
+              "replies"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "indexes": {
+          "type": "object",
+          "properties": {
+            "byGroup": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "byModule": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "byContainer": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "deprecated": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "blocking": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "byGroup",
+            "byModule",
+            "byContainer",
+            "deprecated",
+            "blocking"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "$schemaVersion",
+        "manifest",
+        "commands",
+        "indexes"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

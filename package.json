@@ -1,0 +1,23 @@
+{
+  "name": "redis-spec-builder",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Scrapes redis/redis and redis/docs, produces a single typed machine-readable Redis API specification artifact.",
+  "scripts": {
+    "build": "bun run src/main.ts",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit",
+    "validate": "bun run scripts/validate.ts"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "jszip": "^3.10.1",
+    "zod": "^3.24.1",
+    "zod-to-json-schema": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.2.0",
+    "typescript": "^5.7.2"
+  }
+}

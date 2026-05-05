@@ -1,0 +1,20 @@
+{
+  "builtAt": "2026-05-05T13:42:13.483Z",
+  "byModuleCount": {
+    "redisbloom": 49,
+    "redisearch": 30,
+    "redisjson": 26,
+    "redistimeseries": 17
+  },
+  "commandCount": 642,
+  "moduleCommandCount": 122,
+  "redisDocsSha": "729bba5330155cc2b50dbc9b22595df91d642a67",
+  "redisRepoSha": "3e1afec688dc3f9354277ce6ad522996ebe4f2a6",
+  "redisRepoTag": null,
+  "replyCoverage": {
+    "resp2": 507,
+    "resp3": 621,
+    "structuredFromSchema": 346,
+    "unknownKinds": 495
+  }
+}

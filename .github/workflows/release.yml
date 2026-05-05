@@ -1,0 +1,42 @@
+name: release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "output/**"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - id: ver
+        run: |
+          base="v$(date -u +%Y.%m.%d)"
+          tag="$base"
+          n=1
+          while git rev-parse "$tag" >/dev/null 2>&1; do
+            n=$((n+1))
+            tag="${base}.${n}"
+          done
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.ver.outputs.tag }}
+          name: ${{ steps.ver.outputs.tag }}
+          body: |
+            Versioned redis-spec artifact build.
+
+            Pinned upstream SHAs are recorded in `manifest.json`.
+          files: |
+            output/spec.json
+            output/schema.json
+            output/manifest.json
