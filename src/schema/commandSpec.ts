@@ -125,6 +125,8 @@ export const CommandArgumentSchema: z.ZodType<CommandArgument> = z.lazy(() =>
   }),
 );
 
+export const ReplyConfidenceEnum = z.enum(["schema", "prose", "missing"]);
+
 export const RepliesSchema = z.object({
   resp2: ReplyShapeSchema.nullable(),
   resp3: ReplyShapeSchema.nullable(),
@@ -137,6 +139,10 @@ export const RepliesSchema = z.object({
     resp3: z.string().nullable(),
   }),
   sources: z.array(z.string()),
+  confidence: z.object({
+    resp2: ReplyConfidenceEnum,
+    resp3: ReplyConfidenceEnum,
+  }),
 });
 
 export const CommandSpecSchema = z.object({
@@ -176,6 +182,8 @@ export const ManifestSchema = z.object({
     resp3: z.number(),
     structuredFromSchema: z.number(),
     unknownKinds: z.number(),
+    proseDerivedResp2: z.number(),
+    proseDerivedResp3: z.number(),
   }),
 });
 
@@ -198,6 +206,7 @@ export type CommandTips = z.infer<typeof CommandTipsSchema>;
 export type HistoryEntry = z.infer<typeof HistoryEntrySchema>;
 export type KeySpec = z.infer<typeof KeySpecSchema>;
 export type Replies = z.infer<typeof RepliesSchema>;
+export type ReplyConfidence = z.infer<typeof ReplyConfidenceEnum>;
 export type CommandSpec = z.infer<typeof CommandSpecSchema>;
 export type Manifest = z.infer<typeof ManifestSchema>;
 export type Indexes = z.infer<typeof IndexesSchema>;

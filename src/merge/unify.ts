@@ -7,6 +7,7 @@ import type {
   CommandSpec,
   KeySpec,
   Replies,
+  ReplyConfidence,
 } from "../schema/commandSpec.js";
 import type { ReplyShape } from "../schema/replyShape.js";
 import type {
@@ -45,6 +46,8 @@ export interface UnifyResult {
     resp2Coverage: number;
     resp3Coverage: number;
     unknownKinds: number;
+    proseDerivedResp2: number;
+    proseDerivedResp3: number;
     byModule: Record<string, number>;
   };
 }
@@ -71,6 +74,8 @@ export function unifyAll(bundle: SourceBundle): UnifyResult {
     resp2Coverage: 0,
     resp3Coverage: 0,
     unknownKinds: 0,
+    proseDerivedResp2: 0,
+    proseDerivedResp3: 0,
     byModule: {} as Record<string, number>,
   };
 
@@ -140,7 +145,7 @@ function mergeCommand(
 
   const container = repo?.container ?? deriveContainer(name);
 
-  const replies = buildReplies(repo, page, stats);
+  const replies = buildReplies(repo, core, moduleSpec, moduleId, page, stats);
 
   const spec: CommandSpec = {
     name,
@@ -246,10 +251,31 @@ function deriveContainer(name: string): string | null {
 
 function buildReplies(
   repo: RawCommandFromRedisRepo | undefined,
+  core: RawCommandFromDocs | undefined,
+  moduleSpec: RawCommandFromDocs | undefined,
+  moduleId: ModuleId | null,
   page: RawReturnInfo | null,
   stats: UnifyResult["stats"],
 ): Replies {
-  const fromSchema = repo?.reply_schema ? replySchemaToShape(repo.reply_schema) : null;
+  const schemaCandidates: Array<{ tag: string; schema: unknown }> = [];
+  if (repo?.reply_schema) schemaCandidates.push({ tag: "redis-repo:reply_schema", schema: repo.reply_schema });
+  if (core?.reply_schema) schemaCandidates.push({ tag: "docs-core:reply_schema", schema: core.reply_schema });
+  if (moduleSpec?.reply_schema) {
+    const moduleTag = moduleId && moduleId !== "sentinel" ? `docs-module:${moduleId}:reply_schema` : "docs-module:reply_schema";
+    schemaCandidates.push({ tag: moduleTag, schema: moduleSpec.reply_schema });
+  }
+
+  let fromSchema: ReplyShape | null = null;
+  let schemaSourceTag: string | null = null;
+  for (const candidate of schemaCandidates) {
+    const shape = replySchemaToShape(candidate.schema);
+    if (shape) {
+      fromSchema = shape;
+      schemaSourceTag = candidate.tag;
+      break;
+    }
+  }
+
   const fromPageResp2 = replyMarkdownToShape(page?.resp2 ?? null);
   const fromPageResp3 = replyMarkdownToShape(page?.resp3 ?? null);
 
@@ -257,7 +283,7 @@ function buildReplies(
   const resp2 = page?.hasMultitabsSplit ? fromPageResp2 : null;
 
   const sources: string[] = [];
-  if (fromSchema) sources.push("redis-repo:reply_schema");
+  if (schemaSourceTag) sources.push(schemaSourceTag);
   if (page) sources.push("redis-docs:page");
 
   const protoDiff = summarizeProtocolDiff(
@@ -266,9 +292,18 @@ function buildReplies(
     page?.hasMultitabsSplit ?? false,
   );
 
+  const confidenceResp3: ReplyConfidence = fromSchema
+    ? "schema"
+    : fromPageResp3
+      ? "prose"
+      : "missing";
+  const confidenceResp2: ReplyConfidence = resp2 ? "prose" : "missing";
+
   if (fromSchema) stats.structuredFromSchema += 1;
   if (resp2) stats.resp2Coverage += 1;
   if (resp3) stats.resp3Coverage += 1;
+  if (confidenceResp2 === "prose") stats.proseDerivedResp2 += 1;
+  if (confidenceResp3 === "prose") stats.proseDerivedResp3 += 1;
   countUnknown(resp2, stats);
   countUnknown(resp3, stats);
 
@@ -278,6 +313,7 @@ function buildReplies(
     protocolNotes: protoDiff,
     rawText: { resp2: page?.resp2 ?? null, resp3: page?.resp3 ?? null },
     sources,
+    confidence: { resp2: confidenceResp2, resp3: confidenceResp3 },
   };
 }
 

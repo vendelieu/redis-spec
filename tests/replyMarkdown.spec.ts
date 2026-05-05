@@ -138,4 +138,72 @@ describe("replyMarkdownToShape", () => {
     expect(replyMarkdownToShape(null)).toBeNull();
     expect(replyMarkdownToShape("")).toBeNull();
   });
+
+  test("array of bulk strings — container wins over inner element mention", () => {
+    const r = replyMarkdownToShape(
+      "[Array reply](../../develop/reference/protocol-spec#arrays): an array of [Bulk string reply](../../develop/reference/protocol-spec#bulk-strings) elements representing ACL categories or commands in a given category.",
+    ) as { kind: string; items?: { kind: string } };
+    expect(r.kind).toBe("array");
+    expect(r.items?.kind).toBe("bulkString");
+  });
+
+  test("set of integers — earliest container token wins", () => {
+    const r = replyMarkdownToShape(
+      "[Set reply](url): a set of [Integer reply](url) elements.",
+    ) as { kind: string; items?: { kind: string } };
+    expect(r.kind).toBe("set");
+    expect(r.items?.kind).toBe("integer");
+  });
+
+  test("map with bulk string values", () => {
+    const r = replyMarkdownToShape(
+      "[Map reply](url): a map whose values are [Bulk string reply](url).",
+    ) as { kind: string; value?: { kind: string }; key?: { kind: string } };
+    expect(r.kind).toBe("map");
+    expect(r.value?.kind).toBe("bulkString");
+    expect(r.key?.kind).toBe("bulkString");
+  });
+
+  test("plain-text fallback (no markdown links) still resolves Integer reply", () => {
+    const r = replyMarkdownToShape("Integer reply: the count.") as { kind: string };
+    expect(r.kind).toBe("integer");
+  });
+
+  test("plain-text fallback: array of bulk strings (no link syntax)", () => {
+    const r = replyMarkdownToShape(
+      "Array reply: an array of Bulk string reply elements.",
+    ) as { kind: string; items?: { kind: string } };
+    expect(r.kind).toBe("array");
+    expect(r.items?.kind).toBe("bulkString");
+  });
+
+  test("nested oneOf inside list item — flattens into top-level oneOf", () => {
+    const chunk = `* If \`GET\` was not specified, one of the following:
+  * [Null bulk string reply](url) when condition was not met.
+  * [Simple string reply](url): \`OK\` when set succeeded.
+* [Bulk string reply](url): the previous value when GET was given.`;
+    const r = replyMarkdownToShape(chunk) as {
+      kind: string;
+      variants?: Array<{ kind: string }>;
+    };
+    expect(r.kind).toBe("oneOf");
+    const kinds = r.variants?.map((v) => v.kind) ?? [];
+    expect(kinds).toContain("null");
+    expect(kinds).toContain("simpleString");
+    expect(kinds).toContain("bulkString");
+  });
+
+  test("oneOf variant: array reply with inner bulk string mention parses as array", () => {
+    const chunk = `* [Array reply](url): an array of [Bulk string reply](url) elements.
+* [Simple error reply](url): error on bad input.`;
+    const r = replyMarkdownToShape(chunk) as {
+      kind: string;
+      variants?: Array<{ kind: string; items?: { kind: string } }>;
+    };
+    expect(r.kind).toBe("oneOf");
+    const arrayVariant = r.variants?.find((v) => v.kind === "array");
+    expect(arrayVariant).toBeDefined();
+    expect(arrayVariant?.items?.kind).toBe("bulkString");
+    expect(r.variants?.some((v) => v.kind === "simpleError")).toBe(true);
+  });
 });

@@ -47,6 +47,8 @@ describe("unifyAll", () => {
     expect(commands.GET!.arguments[0]!.name).toBe("key");
     expect(commands.GET!.replies.resp3?.kind).toBe("bulkString");
     expect(commands.GET!.replies.sources).toContain("redis-repo:reply_schema");
+    expect(commands.GET!.replies.confidence.resp3).toBe("schema");
+    expect(commands.GET!.replies.confidence.resp2).toBe("missing");
   });
 
   test("module commands carry module discriminator and null commandFlags", () => {
@@ -106,6 +108,8 @@ describe("unifyAll", () => {
     expect(r.resp3?.kind).toBe("map");
     expect(r.resp2?.kind).toBe("array");
     expect(r.protocolNotes.differs).toBe(true);
+    expect(r.confidence.resp3).toBe("schema");
+    expect(r.confidence.resp2).toBe("prose");
   });
 
   test("page without split → resp2 null (consumer treats as same as resp3)", () => {
@@ -144,6 +148,105 @@ describe("unifyAll", () => {
     });
     const { commands } = unifyAll(bundle);
     expect(commands["SENTINEL MASTERS"]?.module).toBe("sentinel");
+  });
+
+  test("docs-core reply_schema used when redis-repo absent", () => {
+    const bundle = emptyBundle({
+      docsCore: {
+        "ACL CAT": {
+          summary: "List ACL categories",
+          since: "6.0.0",
+          group: "server",
+          reply_schema: { type: "array", items: { type: "string" } },
+        },
+      },
+    });
+    const { commands } = unifyAll(bundle);
+    const r = commands["ACL CAT"]!.replies;
+    expect(r.resp3?.kind).toBe("array");
+    expect((r.resp3 as { items: { kind: string } }).items.kind).toBe("bulkString");
+    expect(r.sources).toContain("docs-core:reply_schema");
+    expect(r.sources).not.toContain("redis-repo:reply_schema");
+  });
+
+  test("docs-module reply_schema used for module commands", () => {
+    const bundle = emptyBundle({
+      docsModules: {
+        redisjson: {
+          "JSON.OBJKEYS": {
+            summary: "Object keys",
+            since: "1.0.0",
+            group: "json",
+            reply_schema: { type: "array", items: { type: "string" } },
+          },
+        },
+        redisbloom: {},
+        redisearch: {},
+        redistimeseries: {},
+      },
+    });
+    const { commands } = unifyAll(bundle);
+    const r = commands["JSON.OBJKEYS"]!.replies;
+    expect(r.resp3?.kind).toBe("array");
+    expect(r.sources).toContain("docs-module:redisjson:reply_schema");
+  });
+
+  test("redis-repo reply_schema beats docs-core when both present", () => {
+    const bundle = emptyBundle({
+      redisRepo: {
+        GET: {
+          summary: "Get a key",
+          since: "1.0.0",
+          group: "string",
+          reply_schema: { type: "string" },
+        },
+      },
+      docsCore: {
+        GET: {
+          summary: "Get a key",
+          since: "1.0.0",
+          group: "string",
+          reply_schema: { type: "integer" },
+        },
+      },
+    });
+    const { commands } = unifyAll(bundle);
+    const r = commands.GET!.replies;
+    expect(r.resp3?.kind).toBe("bulkString");
+    expect(r.sources).toContain("redis-repo:reply_schema");
+    expect(r.sources).not.toContain("docs-core:reply_schema");
+  });
+
+  test("prose-only command has confidence=prose for resp3", () => {
+    const bundle = emptyBundle({
+      docsCore: {
+        OBSCURE: { summary: "x", since: "1.0", group: "g" },
+      },
+      docsPages: {
+        OBSCURE: {
+          resp2: "[Bulk string reply](url): blah",
+          resp3: "[Bulk string reply](url): blah",
+          hasMultitabsSplit: false,
+        },
+      },
+    });
+    const { commands, stats } = unifyAll(bundle);
+    const r = commands.OBSCURE!.replies;
+    expect(r.confidence.resp3).toBe("prose");
+    expect(r.confidence.resp2).toBe("missing");
+    expect(stats.proseDerivedResp3).toBe(1);
+    expect(stats.proseDerivedResp2).toBe(0);
+  });
+
+  test("missing reply info gives confidence=missing on both protocols", () => {
+    const bundle = emptyBundle({
+      redisRepo: {
+        EMPTY: { summary: "x", since: "1.0", group: "g" },
+      },
+    });
+    const { commands } = unifyAll(bundle);
+    expect(commands.EMPTY!.replies.confidence.resp3).toBe("missing");
+    expect(commands.EMPTY!.replies.confidence.resp2).toBe("missing");
   });
 
   test("stats reflect coverage", () => {

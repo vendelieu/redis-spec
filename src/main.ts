@@ -127,6 +127,8 @@ async function main(): Promise<number> {
         resp3: stats.resp3Coverage,
         structuredFromSchema: stats.structuredFromSchema,
         unknownKinds: stats.unknownKinds,
+        proseDerivedResp2: stats.proseDerivedResp2,
+        proseDerivedResp3: stats.proseDerivedResp3,
       },
     },
     commands,
