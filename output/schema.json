@@ -58,13 +58,21 @@
                 },
                 "unknownKinds": {
                   "type": "number"
+                },
+                "proseDerivedResp2": {
+                  "type": "number"
+                },
+                "proseDerivedResp3": {
+                  "type": "number"
                 }
               },
               "required": [
                 "resp2",
                 "resp3",
                 "structuredFromSchema",
-                "unknownKinds"
+                "unknownKinds",
+                "proseDerivedResp2",
+                "proseDerivedResp3"
               ],
               "additionalProperties": false
             }
@@ -982,6 +990,27 @@
                     "items": {
                       "type": "string"
                     }
+                  },
+                  "confidence": {
+                    "type": "object",
+                    "properties": {
+                      "resp2": {
+                        "type": "string",
+                        "enum": [
+                          "schema",
+                          "prose",
+                          "missing"
+                        ]
+                      },
+                      "resp3": {
+                        "$ref": "#/definitions/SpecBundle/properties/commands/additionalProperties/properties/replies/properties/confidence/properties/resp2"
+                      }
+                    },
+                    "required": [
+                      "resp2",
+                      "resp3"
+                    ],
+                    "additionalProperties": false
                   }
                 },
                 "required": [
@@ -989,7 +1018,8 @@
                   "resp3",
                   "protocolNotes",
                   "rawText",
-                  "sources"
+                  "sources",
+                  "confidence"
                 ],
                 "additionalProperties": false
               }
