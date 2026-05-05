@@ -7838,7 +7838,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "normal",
+                      "token": "NORMAL",
                       "type": "pure-token"
                     },
                     {
@@ -7852,7 +7852,7 @@
                       "optional": false,
                       "since": "3.2.0",
                       "summary": null,
-                      "token": "master",
+                      "token": "MASTER",
                       "type": "pure-token"
                     },
                     {
@@ -7866,7 +7866,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "slave",
+                      "token": "SLAVE",
                       "type": "pure-token"
                     },
                     {
@@ -7880,7 +7880,7 @@
                       "optional": false,
                       "since": "5.0.0",
                       "summary": null,
-                      "token": "replica",
+                      "token": "REPLICA",
                       "type": "pure-token"
                     },
                     {
@@ -7894,7 +7894,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "pubsub",
+                      "token": "PUBSUB",
                       "type": "pure-token"
                     }
                   ],
@@ -8159,7 +8159,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "normal",
+              "token": "NORMAL",
               "type": "pure-token"
             },
             {
@@ -8173,7 +8173,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "master",
+              "token": "MASTER",
               "type": "pure-token"
             },
             {
@@ -8187,7 +8187,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "replica",
+              "token": "REPLICA",
               "type": "pure-token"
             },
             {
@@ -8201,7 +8201,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "pubsub",
+              "token": "PUBSUB",
               "type": "pure-token"
             }
           ],
@@ -8826,7 +8826,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "lib-name",
+              "token": "LIB-NAME",
               "type": "string"
             },
             {
@@ -8840,7 +8840,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "lib-ver",
+              "token": "LIB-VER",
               "type": "string"
             }
           ],
@@ -18763,7 +18763,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "s",
+                      "token": "S",
                       "type": "unknown"
                     }
                   ],
@@ -18776,7 +18776,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Checks whether a field exists in a document.",
-                  "token": "exists",
+                  "token": "EXISTS",
                   "type": "unknown"
                 },
                 {
@@ -18792,7 +18792,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "x",
+                      "token": "X",
                       "type": "unknown"
                     }
                   ],
@@ -18805,7 +18805,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the logarithm of a number, property or subexpression",
-                  "token": "log",
+                  "token": "LOG",
                   "type": "unknown"
                 },
                 {
@@ -18821,7 +18821,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "x",
+                      "token": "X",
                       "type": "unknown"
                     }
                   ],
@@ -18834,7 +18834,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the absolute value of a numeric expression",
-                  "token": "abs",
+                  "token": "ABS",
                   "type": "unknown"
                 },
                 {
@@ -18850,7 +18850,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "x",
+                      "token": "X",
                       "type": "unknown"
                     }
                   ],
@@ -18863,7 +18863,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Round to the smallest integer not less than x",
-                  "token": "ceil",
+                  "token": "CEIL",
                   "type": "unknown"
                 },
                 {
@@ -18879,7 +18879,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "x",
+                      "token": "X",
                       "type": "unknown"
                     }
                   ],
@@ -18892,7 +18892,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Round to largest integer not greater than x",
-                  "token": "floor",
+                  "token": "FLOOR",
                   "type": "unknown"
                 },
                 {
@@ -18908,7 +18908,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "x",
+                      "token": "X",
                       "type": "unknown"
                     }
                   ],
@@ -18921,7 +18921,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the logarithm of x to base 2",
-                  "token": "log2",
+                  "token": "LOG2",
                   "type": "unknown"
                 },
                 {
@@ -18937,7 +18937,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "x",
+                      "token": "X",
                       "type": "unknown"
                     }
                   ],
@@ -18950,7 +18950,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the exponent of x, e.g., e^x",
-                  "token": "exp",
+                  "token": "EXP",
                   "type": "unknown"
                 },
                 {
@@ -18966,7 +18966,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "x",
+                      "token": "X",
                       "type": "unknown"
                     }
                   ],
@@ -18979,7 +18979,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the square root of x",
-                  "token": "sqrt",
+                  "token": "SQRT",
                   "type": "unknown"
                 },
                 {
@@ -18995,7 +18995,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "s",
+                      "token": "S",
                       "type": "unknown"
                     }
                   ],
@@ -19008,7 +19008,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the uppercase conversion of s",
-                  "token": "upper",
+                  "token": "UPPER",
                   "type": "unknown"
                 },
                 {
@@ -19024,7 +19024,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "s",
+                      "token": "S",
                       "type": "unknown"
                     }
                   ],
@@ -19037,7 +19037,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the lowercase conversion of s",
-                  "token": "lower",
+                  "token": "LOWER",
                   "type": "unknown"
                 },
                 {
@@ -19053,7 +19053,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "s1",
+                      "token": "S1",
                       "type": "unknown"
                     },
                     {
@@ -19067,7 +19067,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "s2",
+                      "token": "S2",
                       "type": "unknown"
                     }
                   ],
@@ -19080,7 +19080,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return 1 if s2 is the prefix of s1, 0 otherwise.",
-                  "token": "startswith",
+                  "token": "STARTSWITH",
                   "type": "unknown"
                 },
                 {
@@ -19096,7 +19096,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "s1",
+                      "token": "S1",
                       "type": "unknown"
                     },
                     {
@@ -19110,7 +19110,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "s2",
+                      "token": "S2",
                       "type": "unknown"
                     }
                   ],
@@ -19123,7 +19123,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the number of occurrences of s2 in s1, 0 otherwise. If s2 is an empty string, return length(s1) + 1.",
-                  "token": "contains",
+                  "token": "CONTAINS",
                   "type": "unknown"
                 },
                 {
@@ -19139,7 +19139,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "s",
+                      "token": "S",
                       "type": "unknown"
                     }
                   ],
@@ -19152,7 +19152,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the length of s",
-                  "token": "strlen",
+                  "token": "STRLEN",
                   "type": "unknown"
                 },
                 {
@@ -19168,7 +19168,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "s",
+                      "token": "S",
                       "type": "unknown"
                     },
                     {
@@ -19182,7 +19182,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "offset",
+                      "token": "OFFSET",
                       "type": "unknown"
                     },
                     {
@@ -19196,7 +19196,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "count",
+                      "token": "COUNT",
                       "type": "unknown"
                     }
                   ],
@@ -19209,7 +19209,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the substring of s, starting at offset and having count characters. If offset is negative, it represents the distance from the end of the string. If count is -1, it means \"the rest of the string starting at offset\".",
-                  "token": "substr",
+                  "token": "SUBSTR",
                   "type": "unknown"
                 },
                 {
@@ -19225,7 +19225,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "fmt",
+                      "token": "FMT",
                       "type": "unknown"
                     }
                   ],
@@ -19238,7 +19238,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Use the arguments following fmt to format a string. Currently the only format argument supported is %s and it applies to all types of arguments.",
-                  "token": "format",
+                  "token": "FORMAT",
                   "type": "unknown"
                 },
                 {
@@ -19267,7 +19267,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the query terms that matched for each record (up to 100), as a list. If a limit is specified, Redis will return the first N matches found, based on query order.",
-                  "token": "matched_terms",
+                  "token": "MATCHED_TERMS",
                   "type": "unknown"
                 },
                 {
@@ -19283,7 +19283,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "s",
+                      "token": "S",
                       "type": "unknown"
                     }
                   ],
@@ -19296,7 +19296,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Split a string by any character in the string sep, and strip any characters in strip. If only s is specified, it is split by commas and spaces are stripped. The output is an array.",
-                  "token": "split",
+                  "token": "SPLIT",
                   "type": "unknown"
                 },
                 {
@@ -19312,7 +19312,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "x",
+                      "token": "X",
                       "type": "unknown"
                     },
                     {
@@ -19326,7 +19326,7 @@
                       "optional": true,
                       "since": null,
                       "summary": null,
-                      "token": "fmt",
+                      "token": "FMT",
                       "type": "unknown"
                     }
                   ],
@@ -19339,7 +19339,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return a formatted time string based on a numeric timestamp value x.",
-                  "token": "timefmt",
+                  "token": "TIMEFMT",
                   "type": "unknown"
                 },
                 {
@@ -19355,7 +19355,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "timesharing",
+                      "token": "TIMESHARING",
                       "type": "unknown"
                     },
                     {
@@ -19369,7 +19369,7 @@
                       "optional": true,
                       "since": null,
                       "summary": null,
-                      "token": "fmt",
+                      "token": "FMT",
                       "type": "unknown"
                     }
                   ],
@@ -19382,7 +19382,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "The opposite of timefmt() - parse a time format using a given format string",
-                  "token": "parsetime",
+                  "token": "PARSETIME",
                   "type": "unknown"
                 },
                 {
@@ -19398,7 +19398,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "timestamp",
+                      "token": "TIMESTAMP",
                       "type": "unknown"
                     }
                   ],
@@ -19411,7 +19411,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Round a Unix timestamp to midnight (00:00) start of the current day.",
-                  "token": "day",
+                  "token": "DAY",
                   "type": "unknown"
                 },
                 {
@@ -19427,7 +19427,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "timestamp",
+                      "token": "TIMESTAMP",
                       "type": "unknown"
                     }
                   ],
@@ -19440,7 +19440,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Round a Unix timestamp to the beginning of the current hour.",
-                  "token": "hour",
+                  "token": "HOUR",
                   "type": "unknown"
                 },
                 {
@@ -19456,7 +19456,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "timestamp",
+                      "token": "TIMESTAMP",
                       "type": "unknown"
                     }
                   ],
@@ -19469,7 +19469,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Round a Unix timestamp to the beginning of the current minute.",
-                  "token": "minute",
+                  "token": "MINUTE",
                   "type": "unknown"
                 },
                 {
@@ -19485,7 +19485,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "timestamp",
+                      "token": "TIMESTAMP",
                       "type": "unknown"
                     }
                   ],
@@ -19498,7 +19498,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Round a unix timestamp to the beginning of the current month.",
-                  "token": "month",
+                  "token": "MONTH",
                   "type": "unknown"
                 },
                 {
@@ -19514,7 +19514,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "timestamp",
+                      "token": "TIMESTAMP",
                       "type": "unknown"
                     }
                   ],
@@ -19527,7 +19527,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Convert a Unix timestamp to the day number (Sunday = 0).",
-                  "token": "dayofweek",
+                  "token": "DAYOFWEEK",
                   "type": "unknown"
                 },
                 {
@@ -19543,7 +19543,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "timestamp",
+                      "token": "TIMESTAMP",
                       "type": "unknown"
                     }
                   ],
@@ -19556,7 +19556,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Convert a Unix timestamp to the day of month number (1 .. 31).",
-                  "token": "dayofmonth",
+                  "token": "DAYOFMONTH",
                   "type": "unknown"
                 },
                 {
@@ -19572,7 +19572,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "timestamp",
+                      "token": "TIMESTAMP",
                       "type": "unknown"
                     }
                   ],
@@ -19585,7 +19585,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Convert a Unix timestamp to the day of year number (0 .. 365).",
-                  "token": "dayofyear",
+                  "token": "DAYOFYEAR",
                   "type": "unknown"
                 },
                 {
@@ -19601,7 +19601,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "timestamp",
+                      "token": "TIMESTAMP",
                       "type": "unknown"
                     }
                   ],
@@ -19614,7 +19614,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Convert a Unix timestamp to the current year (e.g. 2018).",
-                  "token": "year",
+                  "token": "YEAR",
                   "type": "unknown"
                 },
                 {
@@ -19630,7 +19630,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "timestamp",
+                      "token": "TIMESTAMP",
                       "type": "unknown"
                     }
                   ],
@@ -19643,7 +19643,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Convert a Unix timestamp to the current month (0 .. 11).",
-                  "token": "monthofyear",
+                  "token": "MONTHOFYEAR",
                   "type": "unknown"
                 },
                 {
@@ -19659,7 +19659,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "",
+                      "token": null,
                       "type": "unknown"
                     }
                   ],
@@ -19672,7 +19672,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return distance in meters.",
-                  "token": "geodistance",
+                  "token": "GEODISTANCE",
                   "type": "unknown"
                 }
               ],
@@ -23446,7 +23446,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "s",
+                      "token": "S",
                       "type": "unknown"
                     }
                   ],
@@ -23459,7 +23459,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Checks whether a field exists in a document.",
-                  "token": "exists",
+                  "token": "EXISTS",
                   "type": "unknown"
                 },
                 {
@@ -23475,7 +23475,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "x",
+                      "token": "X",
                       "type": "unknown"
                     }
                   ],
@@ -23488,7 +23488,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the logarithm of a number, property or subexpression",
-                  "token": "log",
+                  "token": "LOG",
                   "type": "unknown"
                 },
                 {
@@ -23504,7 +23504,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "x",
+                      "token": "X",
                       "type": "unknown"
                     }
                   ],
@@ -23517,7 +23517,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the absolute value of a numeric expression",
-                  "token": "abs",
+                  "token": "ABS",
                   "type": "unknown"
                 },
                 {
@@ -23533,7 +23533,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "x",
+                      "token": "X",
                       "type": "unknown"
                     }
                   ],
@@ -23546,7 +23546,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Round to the smallest integer not less than x",
-                  "token": "ceil",
+                  "token": "CEIL",
                   "type": "unknown"
                 },
                 {
@@ -23562,7 +23562,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "x",
+                      "token": "X",
                       "type": "unknown"
                     }
                   ],
@@ -23575,7 +23575,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Round to largest integer not greater than x",
-                  "token": "floor",
+                  "token": "FLOOR",
                   "type": "unknown"
                 },
                 {
@@ -23591,7 +23591,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "x",
+                      "token": "X",
                       "type": "unknown"
                     }
                   ],
@@ -23604,7 +23604,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the logarithm of x to base 2",
-                  "token": "log2",
+                  "token": "LOG2",
                   "type": "unknown"
                 },
                 {
@@ -23620,7 +23620,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "x",
+                      "token": "X",
                       "type": "unknown"
                     }
                   ],
@@ -23633,7 +23633,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the exponent of x, e.g., e^x",
-                  "token": "exp",
+                  "token": "EXP",
                   "type": "unknown"
                 },
                 {
@@ -23649,7 +23649,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "x",
+                      "token": "X",
                       "type": "unknown"
                     }
                   ],
@@ -23662,7 +23662,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the square root of x",
-                  "token": "sqrt",
+                  "token": "SQRT",
                   "type": "unknown"
                 },
                 {
@@ -23678,7 +23678,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "s",
+                      "token": "S",
                       "type": "unknown"
                     }
                   ],
@@ -23691,7 +23691,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the uppercase conversion of s",
-                  "token": "upper",
+                  "token": "UPPER",
                   "type": "unknown"
                 },
                 {
@@ -23707,7 +23707,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "s",
+                      "token": "S",
                       "type": "unknown"
                     }
                   ],
@@ -23720,7 +23720,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the lowercase conversion of s",
-                  "token": "lower",
+                  "token": "LOWER",
                   "type": "unknown"
                 },
                 {
@@ -23736,7 +23736,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "s1",
+                      "token": "S1",
                       "type": "unknown"
                     },
                     {
@@ -23750,7 +23750,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "s2",
+                      "token": "S2",
                       "type": "unknown"
                     }
                   ],
@@ -23763,7 +23763,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return 1 if s2 is the prefix of s1, 0 otherwise.",
-                  "token": "startswith",
+                  "token": "STARTSWITH",
                   "type": "unknown"
                 },
                 {
@@ -23779,7 +23779,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "s1",
+                      "token": "S1",
                       "type": "unknown"
                     },
                     {
@@ -23793,7 +23793,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "s2",
+                      "token": "S2",
                       "type": "unknown"
                     }
                   ],
@@ -23806,7 +23806,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the number of occurrences of s2 in s1, 0 otherwise. If s2 is an empty string, return length(s1) + 1.",
-                  "token": "contains",
+                  "token": "CONTAINS",
                   "type": "unknown"
                 },
                 {
@@ -23822,7 +23822,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "s",
+                      "token": "S",
                       "type": "unknown"
                     }
                   ],
@@ -23835,7 +23835,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the length of s",
-                  "token": "strlen",
+                  "token": "STRLEN",
                   "type": "unknown"
                 },
                 {
@@ -23851,7 +23851,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "s",
+                      "token": "S",
                       "type": "unknown"
                     },
                     {
@@ -23865,7 +23865,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "offset",
+                      "token": "OFFSET",
                       "type": "unknown"
                     },
                     {
@@ -23879,7 +23879,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "count",
+                      "token": "COUNT",
                       "type": "unknown"
                     }
                   ],
@@ -23892,7 +23892,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the substring of s, starting at offset and having count characters. If offset is negative, it represents the distance from the end of the string. If count is -1, it means \"the rest of the string starting at offset\".",
-                  "token": "substr",
+                  "token": "SUBSTR",
                   "type": "unknown"
                 },
                 {
@@ -23908,7 +23908,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "fmt",
+                      "token": "FMT",
                       "type": "unknown"
                     }
                   ],
@@ -23921,7 +23921,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Use the arguments following fmt to format a string. Currently the only format argument supported is %s and it applies to all types of arguments.",
-                  "token": "format",
+                  "token": "FORMAT",
                   "type": "unknown"
                 },
                 {
@@ -23950,7 +23950,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return the query terms that matched for each record (up to 100), as a list. If a limit is specified, Redis will return the first N matches found, based on query order.",
-                  "token": "matched_terms",
+                  "token": "MATCHED_TERMS",
                   "type": "unknown"
                 },
                 {
@@ -23966,7 +23966,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "s",
+                      "token": "S",
                       "type": "unknown"
                     }
                   ],
@@ -23979,7 +23979,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Split a string by any character in the string sep, and strip any characters in strip. If only s is specified, it is split by commas and spaces are stripped. The output is an array.",
-                  "token": "split",
+                  "token": "SPLIT",
                   "type": "unknown"
                 },
                 {
@@ -23995,7 +23995,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "x",
+                      "token": "X",
                       "type": "unknown"
                     },
                     {
@@ -24009,7 +24009,7 @@
                       "optional": true,
                       "since": null,
                       "summary": null,
-                      "token": "fmt",
+                      "token": "FMT",
                       "type": "unknown"
                     }
                   ],
@@ -24022,7 +24022,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return a formatted time string based on a numeric timestamp value x.",
-                  "token": "timefmt",
+                  "token": "TIMEFMT",
                   "type": "unknown"
                 },
                 {
@@ -24038,7 +24038,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "timesharing",
+                      "token": "TIMESHARING",
                       "type": "unknown"
                     },
                     {
@@ -24052,7 +24052,7 @@
                       "optional": true,
                       "since": null,
                       "summary": null,
-                      "token": "fmt",
+                      "token": "FMT",
                       "type": "unknown"
                     }
                   ],
@@ -24065,7 +24065,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "The opposite of timefmt() - parse a time format using a given format string",
-                  "token": "parsetime",
+                  "token": "PARSETIME",
                   "type": "unknown"
                 },
                 {
@@ -24081,7 +24081,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "timestamp",
+                      "token": "TIMESTAMP",
                       "type": "unknown"
                     }
                   ],
@@ -24094,7 +24094,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Round a Unix timestamp to midnight (00:00) start of the current day.",
-                  "token": "day",
+                  "token": "DAY",
                   "type": "unknown"
                 },
                 {
@@ -24110,7 +24110,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "timestamp",
+                      "token": "TIMESTAMP",
                       "type": "unknown"
                     }
                   ],
@@ -24123,7 +24123,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Round a Unix timestamp to the beginning of the current hour.",
-                  "token": "hour",
+                  "token": "HOUR",
                   "type": "unknown"
                 },
                 {
@@ -24139,7 +24139,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "timestamp",
+                      "token": "TIMESTAMP",
                       "type": "unknown"
                     }
                   ],
@@ -24152,7 +24152,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Round a Unix timestamp to the beginning of the current minute.",
-                  "token": "minute",
+                  "token": "MINUTE",
                   "type": "unknown"
                 },
                 {
@@ -24168,7 +24168,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "timestamp",
+                      "token": "TIMESTAMP",
                       "type": "unknown"
                     }
                   ],
@@ -24181,7 +24181,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Round a unix timestamp to the beginning of the current month.",
-                  "token": "month",
+                  "token": "MONTH",
                   "type": "unknown"
                 },
                 {
@@ -24197,7 +24197,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "timestamp",
+                      "token": "TIMESTAMP",
                       "type": "unknown"
                     }
                   ],
@@ -24210,7 +24210,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Convert a Unix timestamp to the day number (Sunday = 0).",
-                  "token": "dayofweek",
+                  "token": "DAYOFWEEK",
                   "type": "unknown"
                 },
                 {
@@ -24226,7 +24226,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "timestamp",
+                      "token": "TIMESTAMP",
                       "type": "unknown"
                     }
                   ],
@@ -24239,7 +24239,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Convert a Unix timestamp to the day of month number (1 .. 31).",
-                  "token": "dayofmonth",
+                  "token": "DAYOFMONTH",
                   "type": "unknown"
                 },
                 {
@@ -24255,7 +24255,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "timestamp",
+                      "token": "TIMESTAMP",
                       "type": "unknown"
                     }
                   ],
@@ -24268,7 +24268,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Convert a Unix timestamp to the day of year number (0 .. 365).",
-                  "token": "dayofyear",
+                  "token": "DAYOFYEAR",
                   "type": "unknown"
                 },
                 {
@@ -24284,7 +24284,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "timestamp",
+                      "token": "TIMESTAMP",
                       "type": "unknown"
                     }
                   ],
@@ -24297,7 +24297,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Convert a Unix timestamp to the current year (e.g. 2018).",
-                  "token": "year",
+                  "token": "YEAR",
                   "type": "unknown"
                 },
                 {
@@ -24313,7 +24313,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "timestamp",
+                      "token": "TIMESTAMP",
                       "type": "unknown"
                     }
                   ],
@@ -24326,7 +24326,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Convert a Unix timestamp to the current month (0 .. 11).",
-                  "token": "monthofyear",
+                  "token": "MONTHOFYEAR",
                   "type": "unknown"
                 },
                 {
@@ -24342,7 +24342,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "",
+                      "token": null,
                       "type": "unknown"
                     }
                   ],
@@ -24355,7 +24355,7 @@
                   "optional": false,
                   "since": null,
                   "summary": "Return distance in meters.",
-                  "token": "geodistance",
+                  "token": "GEODISTANCE",
                   "type": "unknown"
                 }
               ],
@@ -25094,7 +25094,7 @@
                   "optional": false,
                   "since": null,
                   "summary": null,
-                  "token": "m",
+                  "token": "M",
                   "type": "pure-token"
                 },
                 {
@@ -25108,7 +25108,7 @@
                   "optional": false,
                   "since": null,
                   "summary": null,
-                  "token": "km",
+                  "token": "KM",
                   "type": "pure-token"
                 },
                 {
@@ -25122,7 +25122,7 @@
                   "optional": false,
                   "since": null,
                   "summary": null,
-                  "token": "mi",
+                  "token": "MI",
                   "type": "pure-token"
                 },
                 {
@@ -25136,7 +25136,7 @@
                   "optional": false,
                   "since": null,
                   "summary": null,
-                  "token": "ft",
+                  "token": "FT",
                   "type": "pure-token"
                 }
               ],
@@ -28495,7 +28495,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "m",
+              "token": "M",
               "type": "pure-token"
             },
             {
@@ -28509,7 +28509,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "km",
+              "token": "KM",
               "type": "pure-token"
             },
             {
@@ -28523,7 +28523,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "ft",
+              "token": "FT",
               "type": "pure-token"
             },
             {
@@ -28537,7 +28537,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "mi",
+              "token": "MI",
               "type": "pure-token"
             }
           ],
@@ -29010,7 +29010,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "m",
+              "token": "M",
               "type": "pure-token"
             },
             {
@@ -29024,7 +29024,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "km",
+              "token": "KM",
               "type": "pure-token"
             },
             {
@@ -29038,7 +29038,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "ft",
+              "token": "FT",
               "type": "pure-token"
             },
             {
@@ -29052,7 +29052,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "mi",
+              "token": "MI",
               "type": "pure-token"
             }
           ],
@@ -29518,7 +29518,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "m",
+              "token": "M",
               "type": "pure-token"
             },
             {
@@ -29532,7 +29532,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "km",
+              "token": "KM",
               "type": "pure-token"
             },
             {
@@ -29546,7 +29546,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "ft",
+              "token": "FT",
               "type": "pure-token"
             },
             {
@@ -29560,7 +29560,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "mi",
+              "token": "MI",
               "type": "pure-token"
             }
           ],
@@ -30026,7 +30026,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "m",
+              "token": "M",
               "type": "pure-token"
             },
             {
@@ -30040,7 +30040,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "km",
+              "token": "KM",
               "type": "pure-token"
             },
             {
@@ -30054,7 +30054,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "ft",
+              "token": "FT",
               "type": "pure-token"
             },
             {
@@ -30068,7 +30068,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "mi",
+              "token": "MI",
               "type": "pure-token"
             }
           ],
@@ -30440,7 +30440,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "m",
+              "token": "M",
               "type": "pure-token"
             },
             {
@@ -30454,7 +30454,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "km",
+              "token": "KM",
               "type": "pure-token"
             },
             {
@@ -30468,7 +30468,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "ft",
+              "token": "FT",
               "type": "pure-token"
             },
             {
@@ -30482,7 +30482,7 @@
               "optional": false,
               "since": null,
               "summary": null,
-              "token": "mi",
+              "token": "MI",
               "type": "pure-token"
             }
           ],
@@ -30902,7 +30902,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "m",
+                      "token": "M",
                       "type": "pure-token"
                     },
                     {
@@ -30916,7 +30916,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "km",
+                      "token": "KM",
                       "type": "pure-token"
                     },
                     {
@@ -30930,7 +30930,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "ft",
+                      "token": "FT",
                       "type": "pure-token"
                     },
                     {
@@ -30944,7 +30944,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "mi",
+                      "token": "MI",
                       "type": "pure-token"
                     }
                   ],
@@ -31016,7 +31016,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "m",
+                      "token": "M",
                       "type": "pure-token"
                     },
                     {
@@ -31030,7 +31030,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "km",
+                      "token": "KM",
                       "type": "pure-token"
                     },
                     {
@@ -31044,7 +31044,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "ft",
+                      "token": "FT",
                       "type": "pure-token"
                     },
                     {
@@ -31058,7 +31058,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "mi",
+                      "token": "MI",
                       "type": "pure-token"
                     }
                   ],
@@ -31509,7 +31509,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "m",
+                      "token": "M",
                       "type": "pure-token"
                     },
                     {
@@ -31523,7 +31523,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "km",
+                      "token": "KM",
                       "type": "pure-token"
                     },
                     {
@@ -31537,7 +31537,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "ft",
+                      "token": "FT",
                       "type": "pure-token"
                     },
                     {
@@ -31551,7 +31551,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "mi",
+                      "token": "MI",
                       "type": "pure-token"
                     }
                   ],
@@ -31623,7 +31623,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "m",
+                      "token": "M",
                       "type": "pure-token"
                     },
                     {
@@ -31637,7 +31637,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "km",
+                      "token": "KM",
                       "type": "pure-token"
                     },
                     {
@@ -31651,7 +31651,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "ft",
+                      "token": "FT",
                       "type": "pure-token"
                     },
                     {
@@ -31665,7 +31665,7 @@
                       "optional": false,
                       "since": null,
                       "summary": null,
-                      "token": "mi",
+                      "token": "MI",
                       "type": "pure-token"
                     }
                   ],
@@ -69272,7 +69272,7 @@
                   "optional": false,
                   "since": null,
                   "summary": null,
-                  "token": "start",
+                  "token": "START",
                   "type": "pure-token"
                 },
                 {
@@ -69300,7 +69300,7 @@
                   "optional": false,
                   "since": null,
                   "summary": null,
-                  "token": "end",
+                  "token": "END",
                   "type": "pure-token"
                 },
                 {
@@ -69328,7 +69328,7 @@
                   "optional": false,
                   "since": null,
                   "summary": null,
-                  "token": "mid",
+                  "token": "MID",
                   "type": "pure-token"
                 }
               ],
@@ -85405,7 +85405,7 @@
     ]
   },
   "manifest": {
-    "builtAt": "2026-05-05T16:14:30.542Z",
+    "builtAt": "2026-05-05T16:36:55.158Z",
     "byModuleCount": {
       "redisbloom": 49,
       "redisearch": 30,
@@ -85414,7 +85414,7 @@
     },
     "commandCount": 560,
     "moduleCommandCount": 122,
-    "redisDocsSha": "2e9b684d79e6960c9bae5e6b5fb29577ce2ed656",
+    "redisDocsSha": "f0079b4f3c2cc63e2fd192353ea085741cc882fb",
     "redisRepoSha": "3e1afec688dc3f9354277ce6ad522996ebe4f2a6",
     "redisRepoTag": null,
     "replyCoverage": {
