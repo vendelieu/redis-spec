@@ -88,9 +88,20 @@ export function unifyAll(bundle: SourceBundle): UnifyResult {
         ? bundle.sentinel?.[name]
         : bundle.docsModules[moduleId][name]
       : undefined;
+    const moduleRepoSpec =
+      moduleId && moduleId !== "sentinel" ? bundle.moduleRepos[moduleId]?.[name] : undefined;
     const page = bundle.docsPages[name] ?? null;
 
-    const spec = mergeCommand(name, repo, core, moduleSpec, moduleId, page, stats);
+    const spec = mergeCommand(
+      name,
+      repo,
+      core,
+      moduleSpec,
+      moduleRepoSpec,
+      moduleId,
+      page,
+      stats,
+    );
     if (!spec) continue;
     commands[name] = spec;
     if (moduleId) stats.byModule[moduleId] = (stats.byModule[moduleId] ?? 0) + 1;
@@ -103,6 +114,7 @@ function mergeCommand(
   repo: RawCommandFromRedisRepo | undefined,
   core: RawCommandFromDocs | undefined,
   moduleSpec: RawCommandFromDocs | undefined,
+  moduleRepoSpec: RawCommandFromDocs | undefined,
   moduleId: ModuleId | null,
   page: RawReturnInfo | null,
   stats: UnifyResult["stats"],
@@ -145,7 +157,7 @@ function mergeCommand(
 
   const container = repo?.container ?? deriveContainer(name);
 
-  const replies = buildReplies(repo, core, moduleSpec, moduleId, page, stats);
+  const replies = buildReplies(repo, core, moduleSpec, moduleRepoSpec, moduleId, page, stats);
 
   const spec: CommandSpec = {
     name,
@@ -253,12 +265,19 @@ function buildReplies(
   repo: RawCommandFromRedisRepo | undefined,
   core: RawCommandFromDocs | undefined,
   moduleSpec: RawCommandFromDocs | undefined,
+  moduleRepoSpec: RawCommandFromDocs | undefined,
   moduleId: ModuleId | null,
   page: RawReturnInfo | null,
   stats: UnifyResult["stats"],
 ): Replies {
   const schemaCandidates: Array<{ tag: string; schema: unknown }> = [];
   if (repo?.reply_schema) schemaCandidates.push({ tag: "redis-repo:reply_schema", schema: repo.reply_schema });
+  if (moduleRepoSpec?.reply_schema && moduleId && moduleId !== "sentinel") {
+    schemaCandidates.push({
+      tag: `module-repo:${moduleId}:reply_schema`,
+      schema: moduleRepoSpec.reply_schema,
+    });
+  }
   if (core?.reply_schema) schemaCandidates.push({ tag: "docs-core:reply_schema", schema: core.reply_schema });
   if (moduleSpec?.reply_schema) {
     const moduleTag = moduleId && moduleId !== "sentinel" ? `docs-module:${moduleId}:reply_schema` : "docs-module:reply_schema";

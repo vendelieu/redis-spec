@@ -87,7 +87,14 @@ export interface SourceBundle {
   redisRepo: CommandMap<RawCommandFromRedisRepo>;
   docsCore: CommandMap<RawCommandFromDocs>;
   docsModules: Record<Exclude<ModuleId, "sentinel">, CommandMap<RawCommandFromDocs>>;
+  /** Per-module entries fetched directly from each module's upstream repo. */
+  moduleRepos: Record<Exclude<ModuleId, "sentinel">, CommandMap<RawCommandFromDocs>>;
   docsPages: CommandMap<RawReturnInfo>;
   sentinel: CommandMap<RawCommandFromDocs> | null;
-  shas: { redisRepoSha: string; redisDocsSha: string; redisRepoTag: string | null };
+  shas: {
+    redisRepoSha: string;
+    redisDocsSha: string;
+    redisRepoTag: string | null;
+    moduleRepoShas: Record<Exclude<ModuleId, "sentinel">, string | null>;
+  };
 }

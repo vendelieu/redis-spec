@@ -8,6 +8,7 @@ import { type SpecBundle } from "./schema/commandSpec.js";
 import { loadDocsCore, loadDocsModules } from "./sources/docsData.js";
 import { loadDocsPages } from "./sources/docsPages.js";
 import { getLatestSha, getTagAtSha } from "./sources/github.js";
+import { loadModuleRepoCommands } from "./sources/moduleRepos.js";
 import { loadRedisRepoCommands } from "./sources/redisRepo.js";
 import { loadSentinelLocal } from "./sources/sentinelLocal.js";
 import { readState, writeState } from "./state.js";
@@ -76,10 +77,11 @@ async function main(): Promise<number> {
   const redisRepoTag = await getTagAtSha("redis", "redis", redisRepoSha, { token });
 
   console.log("[main] fetching sources …");
-  const [redisRepo, docsCore, docsModules] = await Promise.all([
+  const [redisRepo, docsCore, docsModules, moduleRepoBundle] = await Promise.all([
     loadRedisRepoCommands(redisRepoSha, token),
     loadDocsCore(redisDocsSha, token),
     loadDocsModules(redisDocsSha, token),
+    loadModuleRepoCommands(token),
   ]);
 
   const sentinel = await loadSentinelLocal(args.sentinelPath);
@@ -90,6 +92,9 @@ async function main(): Promise<number> {
   for (const moduleMap of Object.values(docsModules)) {
     for (const k of Object.keys(moduleMap)) known.add(k);
   }
+  for (const moduleMap of Object.values(moduleRepoBundle.maps)) {
+    for (const k of Object.keys(moduleMap)) known.add(k);
+  }
   if (sentinel) for (const k of Object.keys(sentinel)) known.add(k);
 
   const docsPages = await loadDocsPages(redisDocsSha, known, token);
@@ -98,9 +103,15 @@ async function main(): Promise<number> {
     redisRepo,
     docsCore,
     docsModules,
+    moduleRepos: moduleRepoBundle.maps,
     docsPages,
     sentinel,
-    shas: { redisRepoSha, redisDocsSha, redisRepoTag },
+    shas: {
+      redisRepoSha,
+      redisDocsSha,
+      redisRepoTag,
+      moduleRepoShas: moduleRepoBundle.shas,
+    },
   };
 
   const { commands, stats } = unifyAll(sourceBundle);

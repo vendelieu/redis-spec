@@ -7,9 +7,15 @@ function emptyBundle(overrides: Partial<SourceBundle> = {}): SourceBundle {
     redisRepo: {},
     docsCore: {},
     docsModules: { redisjson: {}, redisbloom: {}, redisearch: {}, redistimeseries: {} },
+    moduleRepos: { redisjson: {}, redisbloom: {}, redisearch: {}, redistimeseries: {} },
     docsPages: {},
     sentinel: null,
-    shas: { redisRepoSha: "x", redisDocsSha: "y", redisRepoTag: null },
+    shas: {
+      redisRepoSha: "x",
+      redisDocsSha: "y",
+      redisRepoTag: null,
+      moduleRepoShas: { redisjson: null, redisbloom: null, redisearch: null, redistimeseries: null },
+    },
     ...overrides,
   };
 }
@@ -189,6 +195,42 @@ describe("unifyAll", () => {
     const r = commands["JSON.OBJKEYS"]!.replies;
     expect(r.resp3?.kind).toBe("array");
     expect(r.sources).toContain("docs-module:redisjson:reply_schema");
+  });
+
+  test("module-repo reply_schema beats docs-module when both present", () => {
+    const bundle = emptyBundle({
+      docsModules: {
+        redisjson: {
+          "JSON.OBJKEYS": {
+            summary: "Object keys",
+            since: "1.0.0",
+            group: "json",
+            reply_schema: { type: "string" },
+          },
+        },
+        redisbloom: {},
+        redisearch: {},
+        redistimeseries: {},
+      },
+      moduleRepos: {
+        redisjson: {
+          "JSON.OBJKEYS": {
+            summary: "Object keys",
+            since: "1.0.0",
+            group: "json",
+            reply_schema: { type: "array", items: { type: "string" } },
+          },
+        },
+        redisbloom: {},
+        redisearch: {},
+        redistimeseries: {},
+      },
+    });
+    const { commands } = unifyAll(bundle);
+    const r = commands["JSON.OBJKEYS"]!.replies;
+    expect(r.resp3?.kind).toBe("array");
+    expect(r.sources).toContain("module-repo:redisjson:reply_schema");
+    expect(r.sources).not.toContain("docs-module:redisjson:reply_schema");
   });
 
   test("redis-repo reply_schema beats docs-core when both present", () => {
