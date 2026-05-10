@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-05-05T16:36:55.158Z",
+  "builtAt": "2026-05-10T05:27:29.435Z",
   "byModuleCount": {
     "redisbloom": 49,
     "redisearch": 30,
@@ -8,8 +8,8 @@
   },
   "commandCount": 560,
   "moduleCommandCount": 122,
-  "redisDocsSha": "f0079b4f3c2cc63e2fd192353ea085741cc882fb",
-  "redisRepoSha": "3e1afec688dc3f9354277ce6ad522996ebe4f2a6",
+  "redisDocsSha": "f1879766a3fb25880e4c9553eb39f60da5bf824a",
+  "redisRepoSha": "bf432c98fd36138a89b2cee20d51be6dcfc734b9",
   "redisRepoTag": null,
   "replyCoverage": {
     "proseDerivedResp2": 508,
