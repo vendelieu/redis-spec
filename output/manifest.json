@@ -1,22 +1,22 @@
 {
-  "builtAt": "2026-05-10T05:27:29.435Z",
+  "builtAt": "2026-09-05T08:20:20.802Z",
   "byModuleCount": {
     "redisbloom": 49,
     "redisearch": 30,
     "redisjson": 26,
     "redistimeseries": 17
   },
-  "commandCount": 560,
+  "commandCount": 690,
   "moduleCommandCount": 122,
-  "redisDocsSha": "f1879766a3fb25880e4c9553eb39f60da5bf824a",
-  "redisRepoSha": "bf432c98fd36138a89b2cee20d51be6dcfc734b9",
+  "redisDocsSha": "8cedfa1d2c4933cfbd444af3e357e5af9b843d18",
+  "redisRepoSha": "de9f40ad48475bc754ea4af6c177286d0b4d1587",
   "redisRepoTag": null,
   "replyCoverage": {
-    "proseDerivedResp2": 508,
-    "proseDerivedResp3": 143,
-    "resp2": 508,
-    "resp3": 540,
-    "structuredFromSchema": 397,
-    "unknownKinds": 522
+    "proseDerivedResp2": 554,
+    "proseDerivedResp3": 149,
+    "resp2": 554,
+    "resp3": 578,
+    "structuredFromSchema": 429,
+    "unknownKinds": 545
   }
 }
